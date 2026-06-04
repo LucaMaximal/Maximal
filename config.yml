@@ -24,21 +24,6 @@ chat-format: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
 group-formats:
 #  default: "[default] {name}<dark_gray> »<reset> {message}"
 #  admin: "[admin] {name}<dark_gray> »<reset> {message}"
-default: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-premium: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-vip: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}" 
-supreme: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}" 
-homie: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-
-creator: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-builder: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-supporter: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-moderator: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-content: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-developer: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-adminstrator: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-owner: "{prefix}<dark_gray> | <gray>{name}<dark_gray> »<gray> {message}"
-
 
 # Set the format per track
 # Note: Group formatting takes priority over track formatting, ensure user isn't in a group with corresponding format to apply track format

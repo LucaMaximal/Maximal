@@ -1,1 +1,335 @@
+options:
+    prefix-security: &8[&cCloury-Security&8] &7
+    recovery-code: HC-SECURE-2605
 
+#
+# CONFIG
+#
+
+# SET THIS TO YOUR LOBBY WORLD
+# EXAMPLE:
+# lobby-world: lobby
+
+#
+# VARIABLES
+#
+# {security.reset.running}
+# {security.reset.step}
+# {security.reset.stepname}
+# {security.reset.waiting::uuid}
+#
+
+#
+# STEP 1
+# REQUEST RESET
+#
+
+command /securityreset:
+    permission: op
+    trigger:
+
+        if {security.reset.running} is true:
+            send "{@prefix-security}&cA security reset is already running."
+            stop
+
+        set {security.reset.waiting::%uuid of player%} to now
+
+        send ""
+        send "{@prefix-security}&4&lSECURITY RESET"
+        send "{@prefix-security}&7This action will rebuild the permission system."
+        send ""
+        send "&cConfirmation required."
+        send "&7Use:"
+        send "&c/confirmreset <code>"
+        send ""
+        send "&8Code Required"
+        send ""
+
+        wait 5 minutes
+
+        if {security.reset.waiting::%uuid of player%} is set:
+            delete {security.reset.waiting::%uuid of player%}
+
+#
+# STEP 2
+# CONFIRM RESET
+#
+
+command /confirmreset <text>:
+    permission: op
+    trigger:
+
+        if {security.reset.running} is true:
+            send "{@prefix-security}&cA security reset is already running."
+            stop
+
+        if {security.reset.waiting::%uuid of player%} is not set:
+            send "{@prefix-security}&cNo pending reset request found."
+            stop
+
+        if arg-1 is not "{@recovery-code}":
+            send "{@prefix-security}&cInvalid recovery code."
+            stop
+
+        delete {security.reset.waiting::%uuid of player%}
+
+        set {security.reset.running} to true
+
+        #
+        # STEP 1
+        #
+
+        set {security.reset.step} to 1
+        set {security.reset.stepname} to "Activating Security Lockdown"
+
+        broadcast ""
+        broadcast "&4&lCLoury Security Recovery"
+        broadcast "&7Step &c1/12"
+        broadcast "&7Activating Security Lockdown..."
+        broadcast ""
+
+        #
+        # TODO:
+        # ENABLE MAINTENANCE
+        #
+
+        wait 20 ticks
+
+        #
+        # STEP 2
+        #
+
+        set {security.reset.step} to 2
+        set {security.reset.stepname} to "Teleporting Players"
+
+        broadcast "&7Step &c2/12"
+        broadcast "&7Teleporting Players..."
+
+        loop all players:
+            #
+            # CHANGE THIS LOCATION
+            #
+            teleport loop-player to spawn location of world "world"
+
+        wait 20 ticks
+
+        #
+        # STEP 3
+        #
+
+        set {security.reset.step} to 3
+        set {security.reset.stepname} to "Preparing Recovery"
+
+        broadcast "&7Step &c3/12"
+        broadcast "&7Preparing Recovery..."
+
+        execute console command "lp creategroup temp"
+        execute console command "lp creategroup tempowner"
+
+        wait 20 ticks
+
+        #
+        # STEP 4
+        #
+
+        set {security.reset.step} to 4
+        set {security.reset.stepname} to "Securing Online Players"
+
+        broadcast "&7Step &c4/12"
+        broadcast "&7Securing Online Players..."
+
+        execute console command "lp group temp permission set minecraft.command.help true"
+        execute console command "lp group temp permission set minecraft.command.msg true"
+
+        execute console command "lp group tempowner permission set * true"
+
+        loop all players:
+            execute console command "lp user %name of loop-player% parent add temp"
+
+        #
+        # CHANGE OWNER NAME
+        #
+        execute console command "lp user LucaMaximal parent add tempowner"
+
+        wait 20 ticks
+
+        #
+        # STEP 5
+        #
+
+        set {security.reset.step} to 5
+        set {security.reset.stepname} to "Cleaning User Data"
+
+        broadcast "&7Step &c5/12"
+        broadcast "&7Cleaning User Data..."
+
+        #
+        # YOUR USER CLEANUP
+        # COMES HERE
+        #
+
+        wait 20 ticks
+
+        #
+        # STEP 6
+        #
+
+        set {security.reset.step} to 6
+        set {security.reset.stepname} to "Deleting Tracks"
+
+        broadcast "&7Step &c6/12"
+        broadcast "&7Deleting Tracks..."
+
+        #
+        # TRACK DELETE
+        #
+
+        wait 20 ticks
+
+        #
+        # STEP 7
+        #
+
+        set {security.reset.step} to 7
+        set {security.reset.stepname} to "Deleting Groups"
+
+        broadcast "&7Step &c7/12"
+        broadcast "&7Deleting Groups..."
+
+        #
+        # GROUP DELETE
+        #
+
+        wait 20 ticks
+
+        #
+        # STEP 8
+        #
+
+        set {security.reset.step} to 8
+        set {security.reset.stepname} to "Rebuilding Groups"
+
+        broadcast "&7Step &c8/12"
+        broadcast "&7Rebuilding Groups..."
+
+        #
+        # START PERMISSION SCRIPT
+        #
+
+        set {security.permissions.start} to true
+
+        wait until {security.permissions.finished} is true
+
+        delete {security.permissions.finished}
+
+        #
+        # STEP 9
+        #
+
+        set {security.reset.step} to 9
+        set {security.reset.stepname} to "Restoring Owner Access"
+
+        broadcast "&7Step &c9/12"
+        broadcast "&7Restoring Owner Access..."
+
+        #
+        # CHANGE OWNER NAME
+        #
+
+        execute console command "op LucaMaximal"
+        execute console command "lp user LucaMaximal parent add owner"
+
+        wait 20 ticks
+
+        #
+        # STEP 10
+        #
+
+        set {security.reset.step} to 10
+        set {security.reset.stepname} to "Removing Recovery Groups"
+
+        broadcast "&7Step &c10/12"
+        broadcast "&7Removing Recovery Groups..."
+
+        execute console command "lp deletegroup temp"
+        execute console command "lp deletegroup tempowner"
+
+        wait 20 ticks
+
+        #
+        # STEP 11
+        #
+
+        set {security.reset.step} to 11
+        set {security.reset.stepname} to "Final Verification"
+
+        broadcast "&7Step &c11/12"
+        broadcast "&7Verifying Permission Structure..."
+
+        wait 20 ticks
+
+        #
+        # STEP 12
+        #
+
+        set {security.reset.step} to 12
+        set {security.reset.stepname} to "Finishing Recovery"
+
+        broadcast "&7Step &c12/12"
+        broadcast "&7Finishing Recovery..."
+
+        delete {security.reset.step}
+        delete {security.reset.stepname}
+
+        set {security.reset.running} to false
+
+        broadcast ""
+        broadcast "&a&lSecurity Recovery Complete"
+        broadcast "&7Permission System Rebuilt"
+        broadcast ""
+
+#
+# JOIN LOCKDOWN
+#
+
+on join:
+
+    if {security.reset.running} is true:
+
+        #
+        # CHANGE TO LOBBY
+        #
+        teleport player to spawn location of world "world"
+
+        send ""
+        send "&4&lCLoury Security Recovery"
+        send "&7The permission system is currently rebuilding."
+        send "&7Please wait..."
+        send ""
+
+#
+# CHAT BLOCK
+#
+
+on chat:
+
+    if {security.reset.running} is true:
+
+        cancel event
+
+        send "{@prefix-security}&cChat is temporarily disabled."
+
+#
+# COMMAND BLOCK
+#
+
+on command:
+
+    if {security.reset.running} is true:
+
+        if player has permission "*":
+            stop
+
+        cancel event
+
+        send "{@prefix-security}&cCommands are temporarily disabled."

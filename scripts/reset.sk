@@ -1,5 +1,5 @@
 options:
-    prefix-security: &8[&cHomieCraft-Security&8] &7
+    prefix-security: &8[&cCloury-Security&8] &7
     recovery-code: HC-SECURE-2605
 
 
@@ -22,7 +22,7 @@ command /securityreset:
         send "{@prefix-security}&4&lSECURITY RESET REQUESTED"
         send "{@prefix-security}&7Please confirm this action."
         send "{@prefix-security}&7Type:"
-        send "&c/confirmreset {@recovery-code}"
+        send "&c/confirmreset <code>"
         send ""
         send "{@prefix-security}&cWARNING:"
         send "&7This will fully reset:"
@@ -72,6 +72,12 @@ command /confirmreset <text>:
 
         broadcast "{@prefix-security}&7Starting recovery mode..."
 
+        execute console command "deop Eierfratze0815"
+        execute console command "deop LinusCreeperTH"
+        execute console command "deop LucaMaximal"
+
+        wait 20 ticks
+        
         execute console command "lp creategroup temp"
         execute console command "lp creategroup tempowner"
 
@@ -276,6 +282,8 @@ command /confirmreset <text>:
         #
 
         broadcast "{@prefix-security}&7Restoring owner access..."
+
+        execute console command "op LucaMaximal"
 
         execute console command "lp user LucaMaximal parent add owner"
 

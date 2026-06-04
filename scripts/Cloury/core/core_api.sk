@@ -8,171 +8,171 @@
 # NETWORK
 #
 
-function hc_network() :: text:
+function cloury_network() :: text:
     return "&bCloury"
 
-function hc_network_plain() :: text:
+function cloury_network_plain() :: text:
     return "Cloury"
 
-function hc_version() :: text:
+function cloury_version() :: text:
     return "&c0.0.1-dev+260515"
 
-function hc_version_plain() :: text:
+function cloury_version_plain() :: text:
     return "0.0.1-dev+260515"
 
-function hc_mcversion() :: text:
+function cloury_mcversion() :: text:
     return "&f1.21.11"
 
-function hc_mcversion_plain() :: text:
+function cloury_mcversion_plain() :: text:
     return "1.21.11"
 
-function hc_status() :: text:
+function cloury_status() :: text:
     return "&aONLINE"
 
-function hc_status_dev() :: text:
+function cloury_status_dev() :: text:
     return "&eDEVELOPMENT"
 
-function hc_status_maintenance() :: text:
+function cloury_status_maintenance() :: text:
     return "&cMAINTENANCE"
 
 #
 # PREFIXES
 #
 
-function hc_prefix_main() :: text:
+function cloury_prefix_main() :: text:
     return "&8[&bHCloury&8] &7"
 
-function hc_prefix_chat() :: text:
+function cloury_prefix_chat() :: text:
     return "&8[&dCloury-Chat&8] &7"
 
-function hc_prefix_player() :: text:
+function cloury_prefix_player() :: text:
     return "&8[&aCloury-Player&8] &7"
 
-function hc_prefix_interface() :: text:
+function cloury_prefix_interface() :: text:
     return "&8[&eCloury-Interface&8] &7"
 
-function hc_prefix_security() :: text:
+function cloury_prefix_security() :: text:
     return "&8[&cCloury-Security&8] &7"
 
-function hc_prefix_anticheat() :: text:
+function cloury_prefix_anticheat() :: text:
     return "&8[&4Cloury-Anticheat&8] &7"
 
-function hc_prefix_network() :: text:
+function cloury_prefix_network() :: text:
     return "&8[&9Cloury-Network&8] &7"
 
-function hc_prefix_lobby() :: text:
+function cloury_prefix_lobby() :: text:
     return "&8[&6Cloury-Lobby&8] &7"
 
-function hc_prefix_social() :: text:
+function cloury_prefix_social() :: text:
     return "&8[&5Cloury-Social&8] &7"
 
-function hc_prefix_staff() :: text:
+function cloury_prefix_staff() :: text:
     return "&8[&3Cloury-Staff&8] &7"
 
-function hc_prefix_admin() :: text:
+function cloury_prefix_admin() :: text:
     return "&8[&4Cloury-Administration&8] &7"
 
-function hc_prefix_dev() :: text:
+function cloury_prefix_dev() :: text:
     return "&8[&bCloury-Development&8] &7"
 
-function hc_prefix_events() :: text:
+function cloury_prefix_events() :: text:
     return "&8[&dCloury-Events&8] &7"
 
-function hc_prefix_cosmetics() :: text:
+function cloury_prefix_cosmetics() :: text:
     return "&8[&5Cloury-Cosmetics&8] &7"
 
 #
 # STATUS PREFIXES
 #
 
-function hc_prefix_success() :: text:
+function cloury_prefix_success() :: text:
     return "&8[&a✔&8] &a"
 
-function hc_prefix_error() :: text:
+function cloury_prefix_error() :: text:
     return "&8[&c✘&8] &c"
 
-function hc_prefix_warning() :: text:
+function cloury_prefix_warning() :: text:
     return "&8[&e⚠&8] &e"
 
-function hc_prefix_loading() :: text:
+function cloury_prefix_loading() :: text:
     return "&8[&6…&8] &6"
 
-function hc_prefix_info() :: text:
+function cloury_prefix_info() :: text:
     return "&8[&bℹ&8] &b"
 
-function hc_prefix_debug() :: text:
+function cloury_prefix_debug() :: text:
     return "&8[&5DEBUG&8] &d"
 
 #
 # COLORS
 #
 
-function hc_color_primary() :: text:
+function cloury_color_primary() :: text:
     return "&b"
 
-function hc_color_secondary() :: text:
+function cloury_color_secondary() :: text:
     return "&3"
 
-function hc_color_success() :: text:
+function cloury_color_success() :: text:
     return "&a"
 
-function hc_color_error() :: text:
+function cloury_color_error() :: text:
     return "&c"
 
-function hc_color_warning() :: text:
+function cloury_color_warning() :: text:
     return "&e"
 
-function hc_color_gray() :: text:
+function cloury_color_gray() :: text:
     return "&7"
 
-function hc_color_dark() :: text:
+function cloury_color_dark() :: text:
     return "&8"
 
 #
 # SOUNDS
 #
 
-function hc_sound_success() :: sound:
+function cloury_sound_success() :: sound:
     return sound "entity.player.levelup"
 
-function hc_sound_error() :: sound:
+function cloury_sound_error() :: sound:
     return sound "entity.villager.no"
 
-function hc_sound_click() :: sound:
+function cloury_sound_click() :: sound:
     return sound "ui.button.click"
 
-function hc_sound_notify() :: sound:
+function cloury_sound_notify() :: sound:
     return sound "block.note_block.pling"
 
-function hc_sound_join() :: sound:
+function cloury_sound_join() :: sound:
     return sound "entity.player.levelup"
 
-function hc_sound_quit() :: sound:
+function cloury_sound_quit() :: sound:
     return sound "block.note_block.bass"
 
-function hc_sound_chat() :: sound:
+function cloury_sound_chat() :: sound:
     return sound "entity.experience_orb.pickup"
 
-function hc_sound_open() :: sound:
+function cloury_sound_open() :: sound:
     return sound "block.chest.open"
 
-function hc_sound_close() :: sound:
+function cloury_sound_close() :: sound:
     return sound "block.chest.close"
 
 #
 # UTILITIES
 #
 
-function hc_line() :: text:
+function cloury_line() :: text:
     return "&8&m--------------------------------"
 
-function hc_small_line() :: text:
+function cloury_small_line() :: text:
     return "&8&m----------------"
 
-function hc_loading_bar() :: text:
+function cloury_loading_bar() :: text:
     return "&8[&a||||&2||||&a||||&8]"
 
-function hc_boolean(state: boolean) :: text:
+function cloury_boolean(state: boolean) :: text:
     if {_state} is true:
         return "&aEnabled"
     return "&cDisabled"
@@ -181,20 +181,20 @@ function hc_boolean(state: boolean) :: text:
 # LOG SYSTEM
 #
 
-function hc_log_info(message: text):
+function cloury_log_info(message: text):
     broadcast "%hc_prefix_info()%%{_message}%"
 
-function hc_log_success(message: text):
-    broadcast "%hc_prefix_success()%%{_message}%"
+function cloury_log_success(message: text):
+    broadcast "%cloury_prefix_success()%%{_message}%"
 
-function hc_log_warning(message: text):
-    broadcast "%hc_prefix_warning()%%{_message}%"
+function cloury_log_warning(message: text):
+    broadcast "%cloury_prefix_warning()%%{_message}%"
 
-function hc_log_error(message: text):
-    broadcast "%hc_prefix_error()%%{_message}%"
+function cloury_log_error(message: text):
+    broadcast "%cloury_prefix_error()%%{_message}%"
 
-function hc_log_loading(message: text):
-    broadcast "%hc_prefix_loading()%%{_message}%"
+function cloury_log_loading(message: text):
+    broadcast "%cloury_prefix_loading()%%{_message}%"
 
-function hc_log_debug(message: text):
-    broadcast "%hc_prefix_debug()%%{_message}%"
+function cloury_log_debug(message: text):
+    broadcast "%cloury_prefix_debug()%%{_message}%"

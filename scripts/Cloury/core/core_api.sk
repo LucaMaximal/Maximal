@@ -1,7 +1,7 @@
 #
-# HomieCraft Core API
+# Cloury Core API
 # File:
-# /plugins/Skript/scripts/HomieCraft/core/core_api.sk
+# /plugins/Skript/scripts/Cloury/core/core_api.sk
 #
 
 #
@@ -9,10 +9,10 @@
 #
 
 function hc_network() :: text:
-    return "&bHomieCraft"
+    return "&bCloury"
 
 function hc_network_plain() :: text:
-    return "HomieCraft"
+    return "Cloury"
 
 function hc_version() :: text:
     return "&c0.0.1-dev+260515"
@@ -40,46 +40,46 @@ function hc_status_maintenance() :: text:
 #
 
 function hc_prefix_main() :: text:
-    return "&8[&bHomieCraft&8] &7"
+    return "&8[&bHCloury&8] &7"
 
 function hc_prefix_chat() :: text:
-    return "&8[&dHomieCraft-Chat&8] &7"
+    return "&8[&dCloury-Chat&8] &7"
 
 function hc_prefix_player() :: text:
-    return "&8[&aHomieCraft-Player&8] &7"
+    return "&8[&aCloury-Player&8] &7"
 
 function hc_prefix_interface() :: text:
-    return "&8[&eHomieCraft-Interface&8] &7"
+    return "&8[&eCloury-Interface&8] &7"
 
 function hc_prefix_security() :: text:
-    return "&8[&cHomieCraft-Security&8] &7"
+    return "&8[&cCloury-Security&8] &7"
 
 function hc_prefix_anticheat() :: text:
-    return "&8[&4HomieCraft-Anticheat&8] &7"
+    return "&8[&4Cloury-Anticheat&8] &7"
 
 function hc_prefix_network() :: text:
-    return "&8[&9HomieCraft-Network&8] &7"
+    return "&8[&9Cloury-Network&8] &7"
 
 function hc_prefix_lobby() :: text:
-    return "&8[&6HomieCraft-Lobby&8] &7"
+    return "&8[&6Cloury-Lobby&8] &7"
 
 function hc_prefix_social() :: text:
-    return "&8[&5HomieCraft-Social&8] &7"
+    return "&8[&5Cloury-Social&8] &7"
 
 function hc_prefix_staff() :: text:
-    return "&8[&3HomieCraft-Staff&8] &7"
+    return "&8[&3Cloury-Staff&8] &7"
 
 function hc_prefix_admin() :: text:
-    return "&8[&4HomieCraft-Administration&8] &7"
+    return "&8[&4Cloury-Administration&8] &7"
 
 function hc_prefix_dev() :: text:
-    return "&8[&bHomieCraft-Development&8] &7"
+    return "&8[&bCloury-Development&8] &7"
 
 function hc_prefix_events() :: text:
-    return "&8[&dHomieCraft-Events&8] &7"
+    return "&8[&dCloury-Events&8] &7"
 
 function hc_prefix_cosmetics() :: text:
-    return "&8[&5HomieCraft-Cosmetics&8] &7"
+    return "&8[&5Cloury-Cosmetics&8] &7"
 
 #
 # STATUS PREFIXES

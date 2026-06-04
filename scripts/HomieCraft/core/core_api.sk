@@ -1,0 +1,200 @@
+#
+# HomieCraft Core API
+# File:
+# /plugins/Skript/scripts/HomieCraft/core/core_api.sk
+#
+
+#
+# NETWORK
+#
+
+function hc_network() :: text:
+    return "&bHomieCraft"
+
+function hc_network_plain() :: text:
+    return "HomieCraft"
+
+function hc_version() :: text:
+    return "&c0.0.1-dev+260515"
+
+function hc_version_plain() :: text:
+    return "0.0.1-dev+260515"
+
+function hc_mcversion() :: text:
+    return "&f1.21.11"
+
+function hc_mcversion_plain() :: text:
+    return "1.21.11"
+
+function hc_status() :: text:
+    return "&aONLINE"
+
+function hc_status_dev() :: text:
+    return "&eDEVELOPMENT"
+
+function hc_status_maintenance() :: text:
+    return "&cMAINTENANCE"
+
+#
+# PREFIXES
+#
+
+function hc_prefix_main() :: text:
+    return "&8[&bHomieCraft&8] &7"
+
+function hc_prefix_chat() :: text:
+    return "&8[&dHomieCraft-Chat&8] &7"
+
+function hc_prefix_player() :: text:
+    return "&8[&aHomieCraft-Player&8] &7"
+
+function hc_prefix_interface() :: text:
+    return "&8[&eHomieCraft-Interface&8] &7"
+
+function hc_prefix_security() :: text:
+    return "&8[&cHomieCraft-Security&8] &7"
+
+function hc_prefix_anticheat() :: text:
+    return "&8[&4HomieCraft-Anticheat&8] &7"
+
+function hc_prefix_network() :: text:
+    return "&8[&9HomieCraft-Network&8] &7"
+
+function hc_prefix_lobby() :: text:
+    return "&8[&6HomieCraft-Lobby&8] &7"
+
+function hc_prefix_social() :: text:
+    return "&8[&5HomieCraft-Social&8] &7"
+
+function hc_prefix_staff() :: text:
+    return "&8[&3HomieCraft-Staff&8] &7"
+
+function hc_prefix_admin() :: text:
+    return "&8[&4HomieCraft-Administration&8] &7"
+
+function hc_prefix_dev() :: text:
+    return "&8[&bHomieCraft-Development&8] &7"
+
+function hc_prefix_events() :: text:
+    return "&8[&dHomieCraft-Events&8] &7"
+
+function hc_prefix_cosmetics() :: text:
+    return "&8[&5HomieCraft-Cosmetics&8] &7"
+
+#
+# STATUS PREFIXES
+#
+
+function hc_prefix_success() :: text:
+    return "&8[&a✔&8] &a"
+
+function hc_prefix_error() :: text:
+    return "&8[&c✘&8] &c"
+
+function hc_prefix_warning() :: text:
+    return "&8[&e⚠&8] &e"
+
+function hc_prefix_loading() :: text:
+    return "&8[&6…&8] &6"
+
+function hc_prefix_info() :: text:
+    return "&8[&bℹ&8] &b"
+
+function hc_prefix_debug() :: text:
+    return "&8[&5DEBUG&8] &d"
+
+#
+# COLORS
+#
+
+function hc_color_primary() :: text:
+    return "&b"
+
+function hc_color_secondary() :: text:
+    return "&3"
+
+function hc_color_success() :: text:
+    return "&a"
+
+function hc_color_error() :: text:
+    return "&c"
+
+function hc_color_warning() :: text:
+    return "&e"
+
+function hc_color_gray() :: text:
+    return "&7"
+
+function hc_color_dark() :: text:
+    return "&8"
+
+#
+# SOUNDS
+#
+
+function hc_sound_success() :: sound:
+    return sound "entity.player.levelup"
+
+function hc_sound_error() :: sound:
+    return sound "entity.villager.no"
+
+function hc_sound_click() :: sound:
+    return sound "ui.button.click"
+
+function hc_sound_notify() :: sound:
+    return sound "block.note_block.pling"
+
+function hc_sound_join() :: sound:
+    return sound "entity.player.levelup"
+
+function hc_sound_quit() :: sound:
+    return sound "block.note_block.bass"
+
+function hc_sound_chat() :: sound:
+    return sound "entity.experience_orb.pickup"
+
+function hc_sound_open() :: sound:
+    return sound "block.chest.open"
+
+function hc_sound_close() :: sound:
+    return sound "block.chest.close"
+
+#
+# UTILITIES
+#
+
+function hc_line() :: text:
+    return "&8&m--------------------------------"
+
+function hc_small_line() :: text:
+    return "&8&m----------------"
+
+function hc_loading_bar() :: text:
+    return "&8[&a||||&2||||&a||||&8]"
+
+function hc_boolean(state: boolean) :: text:
+    if {_state} is true:
+        return "&aEnabled"
+    return "&cDisabled"
+
+#
+# LOG SYSTEM
+#
+
+function hc_log_info(message: text):
+    broadcast "%hc_prefix_info()%%{_message}%"
+
+function hc_log_success(message: text):
+    broadcast "%hc_prefix_success()%%{_message}%"
+
+function hc_log_warning(message: text):
+    broadcast "%hc_prefix_warning()%%{_message}%"
+
+function hc_log_error(message: text):
+    broadcast "%hc_prefix_error()%%{_message}%"
+
+function hc_log_loading(message: text):
+    broadcast "%hc_prefix_loading()%%{_message}%"
+
+function hc_log_debug(message: text):
+    broadcast "%hc_prefix_debug()%%{_message}%"

@@ -1,0 +1,83 @@
+options:
+  min-password-length: 6
+  max-password-length: 32
+  max-login-tries: 3
+  session-timeout: 60
+  title-refresh: 20 # ticks (1 sec = 20 ticks)
+
+# Player join event
+on join:
+    if {registered.%player%} is not set:
+        set {loggedin.%player%} to false
+        send title "&b&lWELCOME!" to player for 15 seconds
+        send subtitle "&7/register <password> <confirm-password>" to player for 15 seconds
+        wait {@session-timeout} seconds
+        if {loggedin.%player%} is false:
+            kick player due to "&cSession timed out! Please register to join."
+    else:
+        set {loggedin.%player%} to false
+        send title "&b&lWELCOME BACK!" to player for 15 seconds
+        send subtitle "&7/login <password>" to player for 15 seconds 
+        wait {@session-timeout} seconds
+        if {loggedin.%player%} is false:
+            kick player due to "&cSession timed out! Please login to join."
+
+# Function to repeatedly send titles
+        if {loggedin.%player%} is false:
+            if {registered.%player%} is not set:
+                send title "&b&lWELCOME!" to player for 10 seconds
+                send subtitle "&7/register <password> <confirm-password>" to player for 10 seconds
+            else:
+                send title "&b&lWELCOME BACK!!" to player for 7 seconds
+                send subtitle "&7/login <password>" to player for 7 seconds
+
+# Prevent movement, chat, and commands if not logged in
+on chat:
+    if {loggedin.%player%} is false:
+        cancel event
+        
+on quit:
+    delete {loggedin.%player%}
+    delete {logintries.%player%}
+
+# Register command
+command /register <text> <text>:
+    trigger:
+        if {registered.%player%} is set:
+            send title "&c&lAlready Registered!" with subtitle "&7&lYou are already registered" to player for 5 seconds
+            stop
+        if arg-1 is not arg-2:
+            send title "&c&lPasswords do not match!" with subtitle "&7&lTry again" to player for 5 seconds
+            stop
+        if length of arg-1 < {@min-password-length}:
+            send title "&c&lPassword too short!" with subtitle "&7&lMinimum {@min-password-length} characters" to player for 5 seconds
+            stop
+        if length of arg-1 > {@max-password-length}:
+            send title "&c&lPassword too long!" with subtitle "&7&lMaximum {@max-password-length} characters" to player for 5 seconds
+            stop
+        set {registered.%player%} to arg-1
+        set {loggedin.%player%} to true
+        delete {logintries.%player%}
+        send title "&a&lRegistered & Logged In!" with subtitle "&7&lWELCOME, %player%" to player for 5 seconds
+
+# Login command
+command /login <text>:
+    trigger:
+        if {registered.%player%} is not set:
+            send title "&c&lNot Registered!" with subtitle "&7&lUse /register <password> <confirm-password>" to player for 5 seconds
+            stop
+        if {loggedin.%player%} is true:
+            send title "&a&lAlready Logged In!" with subtitle "&7&lYou are already logged in" to player for 5 seconds
+            stop
+        if {logintries.%player%} is not set:
+            set {logintries.%player%} to 0
+        if {logintries.%player%} >= {@max-login-tries}:
+            send title "&c&lToo many failed attempts!" with subtitle "&7&lTry again later" to player for 5 seconds
+            stop
+        if arg-1 is {registered.%player%}:
+            set {loggedin.%player%} to true
+            delete {logintries.%player%}
+            send title "&a&lLogged In!" with subtitle "&7&lWELCOMR BACK!, %player%" to player for 3 seconds
+        else:
+            add 1 to {logintries.%player%}
+            send title "&c&lIncorrect Password!" with subtitle "&7&lAttempts: %{logintries.%player%}% / {@max-login-tries}" to player for 5 seconds

@@ -1,0 +1,46 @@
+options:
+    prefix: &8[&b&lHomie&5&lCraft&8] &7
+    permm: &4You are not permitted to do this.
+    # Trage hier deine Server-Daten ein:
+    server_ip: "lucamaximal.falix.app"
+    server_port: 27758
+
+# -------------------------
+# REJOIN
+# -------------------------
+command /rejoin [<player>]:
+    permission: hc.command.rejoin
+    permission message: {@prefix}{@permm}
+    cooldown: 5 seconds
+    cooldown message: {@prefix}&cPlease wait %remaining time% before using this command again.
+    trigger:
+
+        # /rejoin <player>
+        if arg-1 is set:
+            if arg-1 is not online:
+                send "{@prefix}&cThat player is not online."
+                stop
+
+            if player does not have permission "hc.command.rejoin.other":
+                send "{@prefix}{@permm}"
+                stop
+
+            if arg-1 has permission "hc.exempt.rejoin":
+                send "{@prefix}{@permm}"
+                stop
+
+            send "{@prefix}&7You have reconnected &b%arg-1's name%&7."
+            send "{@prefix}&7You are being reconnected by &b%player's name%&7..." to arg-1
+
+            wait 1 tick
+            transfer arg-1 to "{@server_ip}:{@server_port}"
+            stop
+
+        # /rejoin (self)
+        if executor is console:
+            send "{@prefix}&cThe console cannot reconnect itself. Provide a player name."
+            stop
+
+        send "{@prefix}&7You are being reconnected..."
+        wait 1 tick
+        transfer player to "{@server_ip}:{@server_port}"

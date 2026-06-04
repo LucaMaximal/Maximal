@@ -1,0 +1,21 @@
+options:
+    # Network
+    network: &bHomieCraft
+    version: &80.0.1-dev
+
+    # Prefixes
+    prefix-main: &8[&bHomieCraft&8] &7
+    prefix-success: &8[&a✔&8] &a
+    prefix-error: &8[&c✘&8] &c
+    prefix-loading: &8[&e…&8] &e
+
+on load:
+    broadcast "{@prefix-loading}Loading HomieCraft Core..."
+    wait 1 tick
+    broadcast "{@prefix-success}HomieCraft Core loaded successfully."
+
+on skript load:
+    broadcast "{@prefix-loading}Skript scripts loading..."
+
+on skript unload:
+    broadcast "{@prefix-error}Skript scripts unloading..."

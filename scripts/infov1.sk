@@ -1,0 +1,191 @@
+options:
+    # Network
+    network: &bHomieCraft
+    version: &c0.0.1-dev+260501.1748
+    mcversion: 1.21.11
+
+    # Main Prefix
+    prefix-main: &8[&bHomieCraft&8] &7
+
+    # Plugin Prefixes
+    prefix-core: &8[&5HomieCraft-Core&8] &7
+    prefix-auth: &8[&6HomieCraft-Auth&8] &7
+    prefix-cloud: &8[&bHomieCraft-Cloud&8] &7
+    prefix-profile: &8[&dHomieCraft-Profile&8] &7
+    prefix-security: &8[&cHomieCraft-Security&8] &7
+    prefix-network: &8[&3HomieCraft-Network&8] &7
+
+on load:
+    set the motd to "&bHomieCraft Network%n%&7Development Version &c%{@version}%"
+on server list ping:
+    set the version string to "&aVersion: &6%{@mcversion}%"
+    set the protocol version to 0
+on load:
+    wait 40 ticks
+    broadcast "{@prefix-core}&7Core initialized successfully."
+    wait 2 tick
+    broadcast "{@prefix-cloud}&7Cloud services started."
+    wait 1 tick
+    broadcast "{@prefix-security}&7Security environment loaded."
+    wait 5 ticks
+    broadcast "{@prefix-network}&7Network communication established."
+
+on join:
+
+    # Freeze player before login
+    set {auth::%player%} to true
+
+    send "{@prefix-main}&7Loading..." to player
+    play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+    wait 15 ticks
+
+    send "{@prefix-core}&7Initializing HomieCraft environment..." to player
+    play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+    
+    wait 20 ticks
+    
+    send "{@prefix-main}&7Loading..." to player
+    play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+    wait 15 ticks
+    
+    send "{@prefix-network}&7Connecting to HomieCraft Network..." to player
+    play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+    wait 20 ticks
+
+    send "{@prefix-main}&7Loading..." to player
+    play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+    wait 15 ticks
+
+    send "{@prefix-auth}&7Please login using &b/login" to player
+    play sound "block.note_block.bit" with volume 1 and pitch 1 to player
+
+# Fake Login command
+command /login:
+    trigger:
+
+        if {auth::%player%} is not set:
+            send "{@prefix-auth}&7You are already authenticated." to player
+            stop
+
+        send "{@prefix-auth}&7Authenticating player session..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 20 ticks
+
+        send "{@prefix-cloud}&7Connecting to HomieCraft Cloud Services..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 15 ticks
+
+        send "{@prefix-main}&7Loading..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 15 ticks
+
+        send "{@prefix-network}&7Registering player on Minecraft Server..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 15 ticks
+
+        send "{@prefix-network}&7Registering player on HomieCraft Services..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 15 ticks
+
+        send "{@prefix-profile}&7Loading HomieCraft player profile..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 15 ticks
+
+        send "{@prefix-security}&7Performing security verification..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 15 ticks
+
+        send "{@prefix-main}&7Loading..." to player
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+
+        wait 15 ticks
+
+        send "{@prefix-main}&7Initialization completed successfully." to player
+        play sound "entity.player.levelup" with volume 1 and pitch 1 to player
+
+        delete {auth::%player%}
+
+        wait 30 ticks
+
+        # Title
+        send title "&bHomieCraft" with subtitle "&7Development Server" to player for 3 seconds
+
+        # Actionbar
+        send action bar "&bHomieCraft &8| &7Development Build" to player
+
+        play sound "entity.player.levelup" with volume 1 and pitch 1 to player
+
+        wait 60 ticks
+
+        # Main info messages
+        send "&r" to player
+        send "&8------------------------------------" to player
+    
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+        send "&7This is a server sponsored by HomieCraft. HomieCraft is in the Development version: 0.0.1-dev+260501.1748. It means that there are many mistakes." to player
+    
+        wait 10 ticks
+    
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+        send "&7Please follow the rules and follow the instructions of HomieCraft Team." to player
+    
+        wait 10 ticks
+    
+        play sound "block.note_block.pling" with volume 1 and pitch 1 to player
+        send "&7Welcome back! The HomieCraft Team wishes you a lot of fun playing." to player
+    
+        send "&8------------------------------------" to player
+        send "&r" to player
+
+# Freeze system
+on player move:
+    if {auth::%player%} is set:
+        cancel event
+
+on break:
+    if {auth::%player%} is set:
+        cancel event
+
+on place:
+    if {auth::%player%} is set:
+        cancel event
+
+on damage:
+    if {auth::%victim%} is set:
+        cancel event
+
+on command:
+    if {auth::%player%} is set:
+        if command is not "login":
+            cancel event
+            send "{@prefix-auth}&7Please login first using &b/login" to player
+
+
+command /hcreload:
+    trigger:
+        wait 40 ticks
+        broadcast "{@prefix-core}&7Core initialized successfully."
+        wait 2 tick
+        broadcast "{@prefix-cloud}&7Cloud services started."
+        wait 1 tick
+        broadcast "{@prefix-security}&7Security environment loaded."
+        wait 5 ticks
+        broadcast "{@prefix-network}&7Network communication established."
+        wait 40 ticks
+        broadcast "{@prefix-main}&7Loading..."
+        wait 40 ticks
+        broadcast "{@prefix-main}&7Loading..."
+        wait 4 ticks
+        broadcast "{@prefix-main}&4Failed to find all the main plugins. As a result, HomieCraft now runs on a weakening version. Please check if all main plugins are available."
+        

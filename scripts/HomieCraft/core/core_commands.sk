@@ -1,0 +1,12 @@
+command /homiecraft:
+    trigger:
+        send "&8&m--------------------------------"
+        send "%hc_network()%"
+        send "&7Version: %hc_version()%"
+        send "&7Minecraft: %hc_mcversion()%"
+        send "&7Status: &aOnline"
+        send "&8&m--------------------------------"
+
+command /hc:
+    trigger:
+        execute player command "homiecraft"

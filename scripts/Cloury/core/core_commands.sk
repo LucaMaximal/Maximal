@@ -1,8 +1,0 @@
-command /cloury:
-    trigger:
-        send "&8&m--------------------------------"
-        send "%cloury_network()%"
-        send "&7Version: %cloury_version()%"
-        send "&7Minecraft: %cloury_mcversion()%"
-        send "&7Status: &aOnline"
-        send "&8&m--------------------------------"

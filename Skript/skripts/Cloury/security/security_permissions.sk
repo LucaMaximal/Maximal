@@ -1,0 +1,408 @@
+options:
+    prefix-security: &8[&cCloury-Security&8] &7
+
+every 1 second:
+
+    if {security.permissions.start} is not true:
+        stop
+
+    delete {security.permissions.start}
+
+    broadcast "{@prefix-security}&7Creating Groups..."
+
+    #
+    # GROUPS
+    #
+
+    execute console command "lp creategroup owner"
+    execute console command "lp creategroup admin"
+
+    execute console command "lp creategroup srdev"
+    execute console command "lp creategroup dev"
+    execute console command "lp creategroup jrdev"
+
+    execute console command "lp creategroup srcontent"
+    execute console command "lp creategroup content"
+    execute console command "lp creategroup jrcontent"
+
+    execute console command "lp creategroup srmod"
+    execute console command "lp creategroup mod"
+    execute console command "lp creategroup jrmod"
+
+    execute console command "lp creategroup srsup"
+    execute console command "lp creategroup sup"
+    execute console command "lp creategroup jrsup"
+
+    execute console command "lp creategroup srbuilder"
+    execute console command "lp creategroup builder"
+    execute console command "lp creategroup jrbuilder"
+
+    execute console command "lp creategroup creator"
+    execute console command "lp creategroup creatorplus"
+
+    execute console command "lp creategroup homie"
+    execute console command "lp creategroup supreme"
+    execute console command "lp creategroup vip"
+    execute console command "lp creategroup premium"
+    execute console command "lp creategroup spieler"
+
+    wait 40 ticks
+
+    broadcast "{@prefix-security}&7Creating Tracks..."
+
+    #
+    # TRACKS
+    #
+
+    execute console command "lp createtrack support"
+    execute console command "lp createtrack development"
+    execute console command "lp createtrack content"
+    execute console command "lp createtrack builder"
+    execute console command "lp createtrack creator"
+    execute console command "lp createtrack player"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-security}&7Building Track Structure..."
+
+    #
+    # SUPPORT
+    #
+
+    execute console command "lp track support append jrsup"
+    execute console command "lp track support append sup"
+    execute console command "lp track support append srsup"
+    execute console command "lp track support append jrmod"
+    execute console command "lp track support append mod"
+    execute console command "lp track support append srmod"
+
+    #
+    # DEVELOPMENT
+    #
+
+    execute console command "lp track development append jrdev"
+    execute console command "lp track development append dev"
+    execute console command "lp track development append srdev"
+
+    #
+    # CONTENT
+    #
+
+    execute console command "lp track content append jrcontent"
+    execute console command "lp track content append content"
+    execute console command "lp track content append srcontent"
+
+    #
+    # BUILDER
+    #
+
+    execute console command "lp track builder append jrbuilder"
+    execute console command "lp track builder append builder"
+    execute console command "lp track builder append srbuilder"
+
+    #
+    # CREATOR
+    #
+
+    execute console command "lp track creator append creator"
+    execute console command "lp track creator append creatorplus"
+
+    #
+    # PLAYER
+    #
+
+    execute console command "lp track player append spieler"
+    execute console command "lp track player append premium"
+    execute console command "lp track player append vip"
+    execute console command "lp track player append supreme"
+    execute console command "lp track player append homie"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-security}&7Applying Weights..."
+
+        #
+    # WEIGHTS
+    #
+
+    execute console command "lp group owner setweight 1000"
+    execute console command "lp group admin setweight 900"
+
+    execute console command "lp group srdev setweight 809"
+    execute console command "lp group dev setweight 807"
+    execute console command "lp group jrdev setweight 805"
+
+    execute console command "lp group srcontent setweight 709"
+    execute console command "lp group content setweight 707"
+    execute console command "lp group jrcontent setweight 705"
+
+    execute console command "lp group srmod setweight 609"
+    execute console command "lp group mod setweight 607"
+    execute console command "lp group jrmod setweight 605"
+
+    execute console command "lp group srsup setweight 509"
+    execute console command "lp group sup setweight 507"
+    execute console command "lp group jrsup setweight 505"
+
+    execute console command "lp group srbuilder setweight 409"
+    execute console command "lp group builder setweight 407"
+    execute console command "lp group jrbuilder setweight 405"
+
+    execute console command "lp group creatorplus setweight 307"
+    execute console command "lp group creator setweight 305"
+
+    execute console command "lp group homie setweight 220"
+    execute console command "lp group supreme setweight 209"
+    execute console command "lp group vip setweight 207"
+    execute console command "lp group premium setweight 205"
+
+    execute console command "lp group spieler setweight 100"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-security}&7Applying Inheritance..."
+
+        #
+    # INHERITANCE
+    #
+
+    execute console command "lp group sup parent add jrsup"
+    execute console command "lp group srsup parent add sup"
+
+    execute console command "lp group jrmod parent add srsup"
+    execute console command "lp group mod parent add jrmod"
+    execute console command "lp group srmod parent add mod"
+
+    execute console command "lp group dev parent add jrdev"
+    execute console command "lp group srdev parent add dev"
+
+    execute console command "lp group content parent add jrcontent"
+    execute console command "lp group srcontent parent add content"
+
+    execute console command "lp group builder parent add jrbuilder"
+    execute console command "lp group srbuilder parent add builder"
+
+    execute console command "lp group creatorplus parent add creator"
+
+    execute console command "lp group premium parent add spieler"
+    execute console command "lp group vip parent add premium"
+    execute console command "lp group supreme parent add vip"
+    execute console command "lp group homie parent add supreme"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-security}&7Applying Prefixes..."
+
+        #
+    # PREFIXES
+    #
+    # FORMAT:
+    #
+    # execute console command "lp group <group> meta setprefix <weight> ""PREFIX_HERE """
+    #
+    # EXAMPLE:
+    #
+    # execute console command "lp group owner meta setprefix 1000 ""<red><bold>OWNER """
+    #
+
+    #
+    # OWNER
+    #
+
+    execute console command "lp group owner meta setprefix 1000 <#831100><b>O</b><#961500><b>W</b><#a91900><b>N</b><#bc1c00><b>E</b><#e22400><b>R</b>"
+
+    #
+    # ADMIN
+    #
+
+    execute console command "lp group admin meta setprefix 900 <#f00b7a><b>A</b><#f30962><b>D</b><#f60749><b>M</b><#f90431><b>I</b><#ff0000><b>N</b>"
+
+    #
+    # SRDEV
+    #
+
+    execute console command "lp group srdev meta setprefix 809 <#95fdfe><b><i>S</i></b><#77fcfe><b><i>r</i></b><#59fbfe><b>D</b><#3cfaff><b>e</b><#00f8ff><b>v</b>"
+
+    #
+    # DEV
+    #
+
+    execute console command "lp group dev meta setprefix 807 <#59fbfe><b>D</b><#3cfaff><b>e</b><#00f8ff><b>v</b>"
+
+    #
+    # JRDEV
+    #
+
+    execute console command "lp group jrdev meta setprefix 805 <#95fdfe><b><i>J</i></b><#77fcfe><b><i>r</i></b><#59fbfe><b>D</b><#3cfaff><b>e</b><#00f8ff><b>v</b>"
+
+    #
+    # SRCONTENT
+    #
+
+    execute console command "lp group srcontent meta setprefix 709 <#00c2e2><b><i>S</i></b><#00bcdc><b><i>r</i></b><#00b5d6><b>C</b><#00afd0><b>o</b><#00a8ca><b>n</b><#00a2c5><b>t</b><#009bbf><b>e</b><#0095b9><b>n</b><#0088ad><b>t</b>"
+
+    #
+    # CONTENT
+    #
+
+    execute console command "lp group content meta setprefix 707 <#00b5d6><b>C</b><#00afd0><b>o</b><#00a8ca><b>n</b><#00a2c5><b>t</b><#009bbf><b>e</b><#0095b9><b>n</b><#0088ad><b>t</b>"
+
+    #
+    # JRCONTENT
+    #
+
+    execute console command "lp group jrcontent meta setprefix 705 <#00c2e2><b><i>J</i></b><#00bcdc><b><i>r</i></b><#00b5d6><b>C</b><#00afd0><b>o</b><#00a8ca><b>n</b><#00a2c5><b>t</b><#009bbf><b>e</b><#0095b9><b>n</b><#0088ad><b>t</b>"
+
+    #
+    # SRMOD
+    #
+
+    execute console command "lp group srmod meta setprefix 609 <#ff6250><b><i>S</i></b><#ff5b44><b><i>r</i></b><#ff5438><b>M</b><#ff4e2d><b>o</b><#ff4015><b>d</b>"
+
+    #
+    # MOD
+    #
+
+    execute console command "lp group mod meta setprefix 607 <#ff5438><b>M</b><#ff4e2d><b>o</b><#ff4015><b>d</b>"
+
+    #
+    # JRMOD
+    #
+
+    execute console command "lp group jrmod meta setprefix 605 <#ff6250><b><i>J</i></b><#ff5b44><b><i>r</i></b><#ff5438><b>M</b><#ff4e2d><b>o</b><#ff4015><b>d</b>"
+
+    #
+    # SRSUP
+    #
+
+    execute console command "lp group srsup meta setprefix 509 <#f5ec00><b><i>S</i></b><#f7e50c><b><i>r</i></b><#f9df19><b>S</b><#fad825><b>u</b><#fecb3e><b>p</b>"
+
+    #
+    # SUP
+    #
+
+    execute console command "lp group sup meta setprefix 507 <#f9df19><b>S</b><#fad825><b>u</b><#fecb3e><b>p</b>"
+
+    #
+    # JRSUP
+    #
+
+    execute console command "lp group jrsup meta setprefix 505 <#f5ec00><b><i>J</i></b><#f7e50c><b><i>r</i></b><#f9df19><b>S</b><#fad825><b>u</b><#fecb3e><b>p</b>"
+
+    #
+    # SRBUILDER
+    #
+
+    execute console command "lp group srbuilder meta setprefix 409 <#32c759><b><i>S</i></b><#35be53><b><i>r</i></b><#38b64e><b>B</b><#3bad48><b>u</b><#3ea543><b>i</b><#429c3d><b>l</b><#459438><b>d</b><#488b32><b>e</b><#4e7a27><b>r</b>"
+
+    #
+    # BUILDER
+    #
+
+    execute console command "lp group builder meta setprefix 407 <#32c759><b>B</b><#36bc52><b>u</b><#3ab14b><b>i</b><#3ea644><b>l</b><#429b3c><b>d</b><#469035><b>e</b><#4e7a27><b>r</b>"
+
+    #
+    # JRBUILDER
+    #
+
+    execute console command "lp group jrbuilder meta setprefix 405 <#32c759><b><i>J</i></b><#35be53><b><i>r</i></b><#38b64e><b>B</b><#3bad48><b>u</b><#3ea543><b>i</b><#429c3d><b>l</b><#459438><b>d</b><#488b32><b>e</b><#4e7a27><b>r</b>"
+
+    #
+    # CREATOR+
+    #
+
+    execute console command "lp group creatorplus meta setprefix 307 <#fe54ff><b>C</b><#f64af7><b>r</b><#ed3fee><b>e</b><#e535e6><b>a</b><#dc2ade><b>t</b><#d420d5><b>o</b><#cb15cd><b>r</b><#ba00bc><b>+</b>"
+
+    #
+    # CREATOR
+    #
+
+    execute console command "lp group creator meta setprefix 305 <#fe54ff><b>C</b><#f448f5><b>r</b><#eb3cec><b>e</b><#e130e2><b>a</b><#d724d9><b>t</b><#cd18cf><b>o</b><#ba00bc><b>r</b>"
+
+    #
+    # HOMIE
+    #
+
+    execute console command "lp group homie meta setprefix 220 <#00ffff><b>H</b><#13d1e5><b>o</b><#27a3cb><b>m</b><#3a74b0><b>i</b><#61187c><b>e</b>"
+
+    #
+    # SUPREME
+    #
+
+    execute console command "lp group supreme meta setprefix 209 <#0042a9>S<#084cb5>u<#1156c1>p<#1960cd>r<#2169da>e<#2973e6>m<#3a87fe>e"
+
+    #
+    # VIP
+    #
+
+    execute console command "lp group vip meta setprefix 207 <#ffffff>V<#eefaff>I<#cbf0ff>P"
+
+    #
+    # PREMIUM
+    #
+
+    execute console command "lp group premium meta setprefix 205 <#c2a000>P<#c7a300>r<#cda600>e<#d2a900>m<#d8ac00>i<#ddaf00>u<#e8b500>m"
+
+    #
+    # SPIELER
+    #
+
+    execute console command "lp group spieler meta setprefix 100 <#adadad>S<#a1a1a1>p<#969696>i<#8a8a8a>e<#7f7f7f>l<#737373>e<#5c5c5c>r"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-security}&7Applying Default Group..."
+
+    #
+    # DEFAULT GROUP
+    #
+
+    execute console command "lp group spieler permission set meta.default.true"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-security}&7Starting Rank Scripts..."
+
+    #
+    # RANK SCRIPTS
+    #
+
+    set {security.rank.owner.start} to true
+    set {security.rank.admin.start} to true
+
+    set {security.rank.srdev.start} to true
+    set {security.rank.dev.start} to true
+    set {security.rank.jrdev.start} to true
+
+    set {security.rank.srcontent.start} to true
+    set {security.rank.content.start} to true
+    set {security.rank.jrcontent.start} to true
+
+    set {security.rank.srmod.start} to true
+    set {security.rank.mod.start} to true
+    set {security.rank.jrmod.start} to true
+
+    set {security.rank.srsup.start} to true
+    set {security.rank.sup.start} to true
+    set {security.rank.jrsup.start} to true
+
+    set {security.rank.srbuilder.start} to true
+    set {security.rank.builder.start} to true
+    set {security.rank.jrbuilder.start} to true
+
+    set {security.rank.creatorplus.start} to true
+    set {security.rank.creator.start} to true
+
+    set {security.rank.homie.start} to true
+    set {security.rank.supreme.start} to true
+    set {security.rank.vip.start} to true
+    set {security.rank.premium.start} to true
+    set {security.rank.spieler.start} to true
+
+    #
+    # FINISHED
+    #
+
+    broadcast "{@prefix-security}&aPermission Structure Created."
+
+    set {security.permissions.finished} to true

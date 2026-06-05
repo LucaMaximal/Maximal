@@ -1,0 +1,83 @@
+#
+# CLOURY COMMANDS - V2
+#
+
+#
+# VERSION COMMAND
+#
+options:
+    network-version: 0.0.1-dev
+    core-version: 0.0.1-dev
+    security-version: 0.0.1-dev
+    cloud-version: 0.0.1-dev
+
+    
+command /version:
+    trigger:
+        send "&8&m--------------------------------"
+        send "&b&lCloury Network"
+        send ""
+        send "&7Network: &f{@network-version}"
+        send "&7Core: &f{@core-version}"
+        send "&7Security: &f{@security-version}"
+        send "&7Cloud: &f{@cloud-version}"
+        send ""
+        send "&aStatus: ONLINE"
+        send "&8&m--------------------------------"
+
+#
+# CLOURY STATUS
+#
+
+command /cloury status:
+    trigger:
+        send "&8&m--------------------------------"
+        send "&b&lCloury Infrastructure Status"
+        send ""
+        send "&7Core: &aONLINE"
+        send "&7Security: &aONLINE"
+        send "&7Network: &aONLINE"
+        send "&7Cloud: &aONLINE"
+        send ""
+        send "&7Access Level: &f%cloury_rank(player)%"
+        send "&8&m--------------------------------"
+
+#
+# CLOURY PLUGINS (FAKE LIST)
+#
+
+command /cloury plugins:
+    trigger:
+        send "&8&m--------------------------------"
+        send "&b&lCloury Plugin Suite"
+        send ""
+        send "&7Cloury"
+        send "&7Cloury-Chat"
+        send "&7Cloury-Player"
+        send "&7Cloury-Interface"
+        send "&7Cloury-Security"
+        send "&7Cloury-Network"
+        send "&7Cloury-Lobby"
+        send "&7Cloury-Social"
+        send "&7Cloury-Cloud"
+        send ""
+        send "&aAll systems integrated"
+        send "&8&m--------------------------------"
+
+#
+# ADMIN JOIN SAFE
+#
+
+on join:
+    wait 1 tick
+
+    if player has permission "group.admin":
+        wait 3 seconds
+        send "&c[Cloury Security]" to player
+        send "&7Privileged account detected." to player
+        send "&7Monitoring level: HIGH" to player
+
+    if player has permission "group.owner":
+        wait 3 seconds
+        send "&4[Cloury ROOT ACCESS]" to player
+        send "&7Owner system access granted." to player

@@ -1,0 +1,43 @@
+options:
+    prefix-owner: &8[&4Owner-Permissions&8] &7
+
+#
+# OWNER PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.owner.start}
+#
+# FINISH VARIABLE:
+# {security.rank.owner.finished}
+#
+
+every 1 second:
+
+    if {security.rank.owner.start} is not true:
+        stop
+
+    delete {security.rank.owner.start}
+
+    broadcast "{@prefix-owner}Applying Owner Permissions..."
+
+    #
+    # OWNER PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group owner permission set * true"
+
+    #
+    # EXAMPLES
+    #
+    # execute console command "lp group owner permission set luckperms.* true"
+    # execute console command "lp group owner permission set minecraft.command.op true"
+    # execute console command "lp group owner permission set skript.* true"
+    #
+
+    wait 20 ticks
+
+    broadcast "{@prefix-owner}&aOwner Permissions Applied."
+
+    set {security.rank.owner.finished} to true

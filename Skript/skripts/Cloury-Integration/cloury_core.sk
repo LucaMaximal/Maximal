@@ -1,0 +1,23 @@
+#
+# CLOURY CORE - V2
+#
+
+options:
+    network-version: v1.1.0-stable+260605.2000
+    core-version: v1.1.0-stable
+    security-version: v1.1.0-stable
+    cloud-version: v0.6.0-beta
+
+on load:
+    broadcast "&8[&bCloury&8] &7Booting infrastructure..."
+    wait 10 ticks
+
+    set {_p} to 0
+
+    loop 5 times:
+        add 20 to {_p}
+        broadcast "&8[&bCloury&8] &7Initializing... &f%{_p}%%"
+        wait 5 ticks
+
+    broadcast "&8[&a✔&8] &bCloury Infrastructure Online"
+    broadcast "&8[&a✔&8] &7All Systems Operational"

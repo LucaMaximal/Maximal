@@ -1,0 +1,97 @@
+#
+# CLOURY CORE - V2
+#
+
+options:
+    prefix: "<dark_gray>[<#00dafe><b>C</b><#0ac9fe><b>l</b><#14b7fd><b>o</b><#1ea6fd><b>u</b><#3d83fd><b>r</b><#7a3efd><b>y</b><dark_gray>]"
+    network-version: v1.1.0-stable+260605.2000
+    core-version: v1.1.0-stable
+    security-version: v1.1.0-stable
+    cloud-version: v0.6.0-beta
+
+on load:
+    broadcast "%{@prefix}% &7Booting infrastructure..."
+    wait 10 ticks
+
+    set {_p} to 0
+
+    loop 10 times:
+        add 10 to {_p}
+        broadcast "%{@prefix}% &7Initializing... &f%{_p}% percent"
+        wait 5 ticks
+
+    broadcast "%{@prefix}% &8[&a✔&8] &bCloury Infrastructure Online"
+    broadcast "%{@prefix}% &8[&a✔&8] &7All Systems Operational"
+
+#
+# Notify Messages
+#
+
+every 15 minutes:
+    set {_r} to random integer between 1 and 20
+
+    if {_r} = 1:
+        broadcast "%{@prefix}% &7Powered by &bCloury Infrastructure&7."
+
+    if {_r} = 2:
+        broadcast "%{@prefix}% &7Sponsored by &bCloury&7."
+
+    if {_r} = 3:
+        broadcast "%{@prefix}% &7Network services provided by &bCloury&7."
+
+    if {_r} = 4:
+        broadcast "%{@prefix}% &7Connected to &bCloury Services&7."
+
+    if {_r} = 5:
+        broadcast "%{@prefix}% &7Protected by &bCloury Security&7."
+
+    if {_r} = 6:
+        broadcast "%{@prefix}% &7Running on &bCloury Infrastructure&7."
+
+    if {_r} = 7:
+        broadcast "%{@prefix}% &7Cloud services provided by &bCloury&7."
+
+    if {_r} = 8:
+        broadcast "%{@prefix}% &7Server stability powered by &bCloury&7."
+
+    if {_r} = 9:
+        broadcast "%{@prefix}% &7Advanced protection enabled by &bCloury Security&7."
+
+    if {_r} = 10:
+        broadcast "%{@prefix}% &7Infrastructure monitoring active&7."
+
+    if {_r} = 11:
+        broadcast "%{@prefix}% &7Backend services maintained by &bCloury&7."
+
+    if {_r} = 12:
+        broadcast "%{@prefix}% &7Profile synchronization provided by &bCloury&7."
+
+    if {_r} = 13:
+        broadcast "%{@prefix}% &7Network communication secured by &bCloury&7."
+
+    if {_r} = 14:
+        broadcast "%{@prefix}% &7Infrastructure status: &aOPERATIONAL"
+
+    if {_r} = 15:
+        broadcast "%{@prefix}% &7Security status: &aPROTECTED"
+
+    if {_r} = 16:
+        broadcast "%{@prefix}% &7Cloud connection status: &aONLINE"
+
+    if {_r} = 17:
+        broadcast "%{@prefix}% &7This server is supported by &bCloury&7."
+
+    if {_r} = 18:
+        broadcast "%{@prefix}% &7Infrastructure donated by &bCloury&7."
+
+    if {_r} = 19:
+        broadcast "%{@prefix}% &7Enterprise-grade systems provided by &bCloury&7."
+
+    if {_r} = 20:
+        broadcast "%{@prefix}% &7Thank you for using a &bCloury Powered Server&7."
+
+
+
+#
+# Rank check
+#

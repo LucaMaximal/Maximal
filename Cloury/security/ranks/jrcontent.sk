@@ -1,0 +1,59 @@
+options:
+    prefix-jrcontent: &8[&4JrContent-Permissions&8] &7
+
+#
+# JRCONTENT PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.jrcontent.start}
+#
+# FINISH VARIABLE:
+# {security.rank.jrcontent.finished}
+#
+
+every 1 second:
+
+    if {security.rank.jrcontent.start} is not true:
+        stop
+
+    delete {security.rank.jrcontent.start}
+
+    broadcast "{@prefix-jrcontent}Applying JrContent Permissions..."
+
+    #
+    # JRCONTENT PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group jrcontent permission set ab.check"
+    execute console command "lp group jrcontent permission set ab.history"
+    
+    execute console command "lp group jrcontent permission set ab.warns.other"
+    execute console command "lp group jrcontent permission set ab.notes.other"
+    
+    execute console command "lp group jrcontent permission set ab.notify.kick"
+    execute console command "lp group jrcontent permission set ab.notify.ban"
+    execute console command "lp group jrcontent permission set ab.notify.tempban"
+    execute console command "lp group jrcontent permission set ab.notify.mute"
+    execute console command "lp group jrcontent permission set ab.notify.tempmute"
+    execute console command "lp group jrcontent permission set ab.notify.warn"
+    execute console command "lp group jrcontent permission set ab.notify.tempwarn"
+    execute console command "lp group jrcontent permission set ab.notify.note"
+    
+    execute console command "lp group jrcontent permission set ab.undoNotify.ban"
+    execute console command "lp group jrcontent permission set ab.undoNotify.mute"
+    execute console command "lp group jrcontent permission set ab.undoNotify.warn"
+    execute console command "lp group jrcontent permission set ab.undoNotify.note"
+    
+    execute console command "lp group jrcontent permission set ab.kick.exempt.6"
+    execute console command "lp group jrcontent permission set ab.ban.exempt.6"
+    execute console command "lp group jrcontent permission set ab.mute.exempt.6"
+    execute console command "lp group jrcontent permission set ab.warn.exempt.6"
+    execute console command "lp group jrcontent permission set ab.note.exempt.6"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-jrcontent}&aJrContent Permissions Applied."
+
+    set {security.rank.jrcontent.finished} to true

@@ -1,0 +1,35 @@
+options:
+    prefix-content: &8[&4Content-Permissions&8] &7
+
+#
+# CONTENT PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.content.start}
+#
+# FINISH VARIABLE:
+# {security.rank.content.finished}
+#
+
+every 1 second:
+
+    if {security.rank.content.start} is not true:
+        stop
+
+    delete {security.rank.content.start}
+
+    broadcast "{@prefix-content}Applying Content Permissions..."
+
+    #
+    # CONTENT PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group content permission set ab.note.use"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-content}&aContent Permissions Applied."
+
+    set {security.rank.content.finished} to true

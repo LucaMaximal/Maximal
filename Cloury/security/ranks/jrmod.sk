@@ -1,0 +1,47 @@
+options:
+    prefix-jrmod: &8[&4JrMod-Permissions&8] &7
+
+#
+# JRMOD PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.jrmod.start}
+#
+# FINISH VARIABLE:
+# {security.rank.jrmod.finished}
+#
+
+every 1 second:
+
+    if {security.rank.jrmod.start} is not true:
+        stop
+
+    delete {security.rank.jrmod.start}
+
+    broadcast "{@prefix-jrmod}Applying JrMod Permissions..."
+
+    #
+    # JRMOD PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group jrmod permission set ab.ban.undo"
+
+    execute console command "lp group jrmod permission set ab.notes.other"
+    
+    execute console command "lp group jrmod permission set ab.kick.exempt.8"
+    execute console command "lp group jrmod permission set ab.ban.exempt.8"
+    execute console command "lp group jrmod permission set ab.mute.exempt.8"
+    execute console command "lp group jrmod permission set ab.warn.exempt.8"
+    execute console command "lp group jrmod permission set ab.note.exempt.8"
+    
+    execute console command "lp group jrmod permission set ab.tempban.dur.15"
+    execute console command "lp group jrmod permission set ab.tempmute.dur.15"
+    execute console command "lp group jrmod permission set ab.tempwarn.dur.15"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-jrmod}&aJrMod Permissions Applied."
+
+    set {security.rank.jrmod.finished} to true

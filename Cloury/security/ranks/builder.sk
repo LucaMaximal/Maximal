@@ -1,0 +1,35 @@
+options:
+    prefix-builder: &8[&4Builder-Permissions&8] &7
+
+#
+# BUILDER PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.builder.start}
+#
+# FINISH VARIABLE:
+# {security.rank.builder.finished}
+#
+
+every 1 second:
+
+    if {security.rankbuilder.start} is not true:
+        stop
+
+    delete {security.rank.builder.start}
+
+    broadcast "{@prefix-builder}Applying Builder Permissions..."
+
+    #
+    # BUILDER PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group builder permission ab.note.use"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-builder}&aBuilder  Permissions Applied."
+
+    set {security.rank.builder.finished} to true

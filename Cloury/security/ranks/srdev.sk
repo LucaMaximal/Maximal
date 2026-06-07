@@ -1,0 +1,36 @@
+options:
+    prefix-srdev: &8[&4SrDev-Permissions&8] &7
+
+#
+# SRDEV PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.srdev.start}
+#
+# FINISH VARIABLE:
+# {security.rank.srdev.finished}
+#
+
+every 1 second:
+
+    if {security.rank.srdev.start} is not true:
+        stop
+
+    delete {security.rank.srdev.start}
+
+    broadcast "{@prefix-srdev}Applying SrDev Permissions..."
+
+    #
+    # SRDEV PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group srdev permission set ab.banlist"
+    execute console command "lp group srdev permission set ab.help"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-srdev}&aSrDev Permissions Applied."
+
+    set {security.rank.srdev.finished} to true

@@ -1,0 +1,22 @@
+options:
+#
+# HEADER
+#
+    hl1: &8&m                                  
+    hl2: &3Servername
+
+#
+# FOOTER
+#
+    fl1: test
+    fl2: test2
+
+###########################
+    header: {@hl1}%nl%{@hl2}
+    footer: {@fl1}%nl%{@fl2}
+
+every second:
+    loop all players:
+        set loop-player's tab list header to "{@header}"
+        set loop-player's tab list footer to "{@footer}"
+    stop

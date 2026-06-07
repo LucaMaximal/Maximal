@@ -1,0 +1,35 @@
+options:
+    prefix-spieler: &8[&4Spieler-Permissions&8] &7
+
+#
+# SPIELER PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.spieler.start}
+#
+# FINISH VARIABLE:
+# {security.rank.spieler.finished}
+#
+
+every 1 second:
+
+    if {security.rank.spieler.start} is not true:
+        stop
+
+    delete {security.rank.spieler.start}
+
+    broadcast "{@prefix-spieler}Applying Spieler Permissions..."
+
+    #
+    # SPIELER PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group spieler permission set ab.warns.own"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-spieler}&aSpieler Permissions Applied."
+
+    set {security.rank.spieler.finished} to true

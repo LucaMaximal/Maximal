@@ -1,0 +1,59 @@
+options:
+    prefix-jrbuilder: &8[&4JrBuilder-Permissions&8] &7
+
+#
+# JRBUILDER PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.jrbuilder.start}
+#
+# FINISH VARIABLE:
+# {security.rank.jrbuilder.finished}
+#
+
+every 1 second:
+
+    if {security.rank.jrbuilder.start} is not true:
+        stop
+
+    delete {security.rank.jrbuilder.start}
+
+    broadcast "{@prefix-jrbuilder}Applying JrBuilder Permissions..."
+
+    #
+    # JRBUILDER PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group jrbuilder permission set ab.check"
+    execute console command "lp group jrbuilder permission set ab.history"
+    
+    execute console command "lp group jrbuilder permission set ab.warns.other"
+    execute console command "lp group jrbuilder permission set ab.notes.other"
+
+    execute console command "lp group jrbuilder permission set ab.notify.kick"
+    execute console command "lp group jrbuilder permission set ab.notify.ban"
+    execute console command "lp group jrbuilder permission set ab.notify.tempban"
+    execute console command "lp group jrbuilder permission set ab.notify.mute"
+    execute console command "lp group jrbuilder permission set ab.notify.tempmute"
+    execute console command "lp group jrbuilder permission set ab.notify.warn"
+    execute console command "lp group jrbuilder permission set ab.notify.tempwarn"
+    execute console command "lp group jrbuilder permission set ab.notify.note"
+    
+    execute console command "lp group jrbuilder permission set ab.undoNotify.ban"
+    execute console command "lp group jrbuilder permission set ab.undoNotify.mute"
+    execute console command "lp group jrbuilder permission set ab.undoNotify.warn"
+    execute console command "lp group jrbuilder permission set ab.undoNotify.note"
+    
+    execute console command "lp group jrbuilder permission set ab.kick.exempt.6"
+    execute console command "lp group jrbuilder permission set ab.ban.exempt.6"
+    execute console command "lp group jrbuilder permission set ab.mute.exempt.6"
+    execute console command "lp group jrbuilder permission set ab.warn.exempt.6"
+    execute console command "lp group jrbuilder permission set ab.note.exempt.6"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-jrbuilder}&aJrBuilder Permissions Applied."
+
+    set {security.rank.jrbuilder.finished} to true

@@ -1,0 +1,35 @@
+options:
+    prefix-vip: &8[&4VIP-Permissions&8] &7
+
+#
+# VIP PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.vip.start}
+#
+# FINISH VARIABLE:
+# {security.rank.vip.finished}
+#
+
+every 1 second:
+
+    if {security.rank.vip.start} is not true:
+        stop
+
+    delete {security.rank.vip.start}
+
+    broadcast "{@prefix-vip}Applying VIP Permissions..."
+
+    #
+    # VIP PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group vip permission set ab.warns.own"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-vip}&aVIP Permissions Applied."
+
+    set {security.rank.vip.finished} to true

@@ -1,0 +1,36 @@
+options:
+    prefix-srcontent: &8[&4SrContent-Permissions&8] &7
+
+#
+# SRCONTENT PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.srcontent.start}
+#
+# FINISH VARIABLE:
+# {security.rank.srcontent.finished}
+#
+
+every 1 second:
+
+    if {security.rank.srcontent.start} is not true:
+        stop
+
+    delete {security.rank.srcontent.start}
+
+    broadcast "{@prefix-srcontent}Applying SrContent Permissions..."
+
+    #
+    # SRCONTENT PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group srcontent permission set ab.banlist"
+    execute console command "lp group srcontent permission set ab.help"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-srcontent}&aSrContent Permissions Applied."
+
+    set {security.rank.srcontent.finished} to true

@@ -1,0 +1,40 @@
+options:
+    prefix-srsup: &8[&4SrSup-Permissions&8] &7
+
+#
+# SRSUP PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.srsup.start}
+#
+# FINISH VARIABLE:
+# {security.rank.srsup.finished}
+#
+
+every 1 second:
+
+    if {security.rank.srsup.start} is not true:
+        stop
+
+    delete {security.rank.srsup.start}
+
+    broadcast "{@prefix-srsup}Applying SrSup Permissions..."
+
+    #
+    # SRSUP PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group srsup permission set ab.mute.undo"
+    execute console command "lp group srsup permission set ab.warn.undo"
+    
+    execute console command "lp group srsup permission set ab.tempban.dur.9"
+    execute console command "lp group srsup permission set ab.tempmute.dur.9"
+    execute console command "lp group srsup permission set ab.tempwarn.dur.9"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-srsup}&aSrSup Permissions Applied."
+
+    set {security.rank.srsup.finished} to true

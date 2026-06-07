@@ -1,0 +1,45 @@
+options:
+    prefix-mod: &8[&4Mod-Permissions&8] &7
+
+#
+# MOD PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.mod.start}
+#
+# FINISH VARIABLE:
+# {security.rank.mod.finished}
+#
+
+every 1 second:
+
+    if {security.rank.mod.start} is not true:
+        stop
+
+    delete {security.rank.mod.start}
+
+    broadcast "{@prefix-mod}Applying Mod Permissions..."
+
+    #
+    # MOD PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group mod permission set ab.ban.perma"
+    execute console command "lp group mod permission set ab.mute.perma"
+    execute console command "lp group mod permission set ab.warn.perma"
+    
+    execute console command "lp group mod permission set ab.all.undo"
+    
+    execute console command "lp group mod permission set ab.changeReason"
+    
+    execute console command "lp group mod permission set ab.check.ip"
+    
+    execute console command "lp group mod permission set ab.ipban.temp"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-mod}&aMod Permissions Applied."
+
+    set {security.rank.mod.finished} to true

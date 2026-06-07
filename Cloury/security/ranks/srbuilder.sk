@@ -1,0 +1,36 @@
+options:
+    prefix-srbuilder: &8[&4SrBuilder-Permissions&8] &7
+
+#
+# SRBUILDER PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.srbuilder.start}
+#
+# FINISH VARIABLE:
+# {security.rank.srbuilder.finished}
+#
+
+every 1 second:
+
+    if {security.rank.srbuilder.start} is not true:
+        stop
+
+    delete {security.rank.srbuilder.start}
+
+    broadcast "{@prefix-srbuilder}Applying SrBuilder Permissions..."
+
+    #
+    # SRBUILDER PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group srbuilder permission set ab.banlist"
+    execute console command "lp group srbuilder permission set ab.help"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-srbuilder}&aSrBuilder Permissions Applied."
+
+    set {security.rank.srbuilder.finished} to true

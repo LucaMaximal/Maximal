@@ -1,0 +1,41 @@
+options:
+    prefix-srmod: &8[&4SrMod-Permissions&8] &7
+
+#
+# SRMOD PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.srmod.start}
+#
+# FINISH VARIABLE:
+# {security.rank.srmod.finished}
+#
+
+every 1 second:
+
+    if {security.rank.srmod.start} is not true:
+        stop
+
+    delete {security.rank.srmod.start}
+
+    broadcast "{@prefix-srmod}Applying SrMod Permissions..."
+
+    #
+    # SRMOD PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group srmod permission set ab.note.undo"
+
+    execute console command "lp group srmod permission set ab.help"
+    
+    execute console command "lp group srmod permission set ab.tempban.dur.20"
+    execute console command "lp group srmod permission set ab.tempmute.dur.20"
+    execute console command "lp group srmod permission set ab.tempwarn.dur.20"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-srmod}&aSrMod Permissions Applied."
+
+    set {security.rank.srmod.finished} to true

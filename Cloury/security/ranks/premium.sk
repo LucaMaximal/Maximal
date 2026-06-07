@@ -1,0 +1,35 @@
+options:
+    prefix-premium: &8[&4Premium-Permissions&8] &7
+
+#
+# PREMIUM PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.premium.start}
+#
+# FINISH VARIABLE:
+# {security.rank.premium.finished}
+#
+
+every 1 second:
+
+    if {security.rank.premium.start} is not true:
+        stop
+
+    delete {security.rank.premium.start}
+
+    broadcast "{@prefix-premium}Applying Premium Permissions..."
+
+    #
+    # PREMIUM PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group premium permission set ab.warns.own"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-premium}&aPremium Permissions Applied."
+
+    set {security.rank.premium.finished} to true

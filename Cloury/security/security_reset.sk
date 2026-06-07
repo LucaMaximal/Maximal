@@ -1,0 +1,345 @@
+options:
+    prefix-security: &8[&cCloury-Security&8] &7
+    #recovery-code: HC-SECURE-2605
+    recovery-code: HC-RESET
+    owner-name: LucaMaximal
+
+#
+# VARIABLES
+#
+# {security.reset.running}
+# {security.reset.step}
+# {security.reset.stepname}
+# {security.reset.waiting::uuid}
+# {security.permissions.start}
+# {security.permissions.finished}
+#
+
+#
+# REQUEST RESET
+#
+
+command /securityreset:
+    permission: op
+    trigger:
+
+        if {security.reset.running} is true:
+            send "{@prefix-security}&cA security reset is already running."
+            stop
+
+        set {security.reset.waiting::%uuid of player%} to true
+
+        send ""
+        send "&4&lSECURITY RESET REQUESTED"
+        send "&7This action will completely rebuild the permission system."
+        send ""
+        send "&7Use:"
+        send "&c/confirmreset <code>"
+        send ""
+        send "&cWarning:"
+        send "&7Groups, tracks and permissions will be rebuilt."
+        send ""
+
+        wait 5 minutes
+
+        delete {security.reset.waiting::%uuid of player%}
+
+#
+# CONFIRM RESET
+#
+
+command /confirmreset <text>:
+    permission: op
+    trigger:
+
+        if {security.reset.running} is true:
+            send "{@prefix-security}&cA security reset is already running."
+            stop
+
+        if {security.reset.waiting::%uuid of player%} is not set:
+            send "{@prefix-security}&cNo pending reset request found."
+            stop
+
+        if arg-1 is not "{@recovery-code}":
+            send "{@prefix-security}&cInvalid recovery code."
+            stop
+
+        delete {security.reset.waiting::%uuid of player%}
+
+        set {security.reset.running} to true
+
+        broadcast ""
+        broadcast "&4&lCLOURY SECURITY RECOVERY"
+        broadcast "&7Emergency permission recovery started."
+        broadcast ""
+
+        wait 2 seconds
+        broadcast "{@prefix-security}Loading..."
+        wait 5 seconds
+        broadcast "{@prefix-security}Loading..."
+        wait 1 second
+
+        #
+        # STEP 1
+        #
+
+        set {security.reset.step} to 1
+        set {security.reset.stepname} to "Activating Security Lockdown"
+
+        broadcast "&8[&c1/12&8] &7Activating Security Lockdown..."
+
+        wait 20 ticks
+
+        #
+        # STEP 2
+        #
+
+        set {security.reset.step} to 2
+        set {security.reset.stepname} to "Teleporting Players"
+
+        broadcast "&8[&c2/12&8] &7Teleporting Players..."
+
+        loop all players:
+            teleport loop-player to spawn location of world "world"
+
+        wait 20 ticks
+
+        #
+        # STEP 3
+        #
+
+        set {security.reset.step} to 3
+        set {security.reset.stepname} to "Preparing Recovery"
+
+        broadcast "&8[&c3/12&8] &7Preparing Recovery Groups..."
+
+        execute console command "lp creategroup temp"
+        execute console command "lp creategroup tempowner"
+
+        wait 20 ticks
+
+        #
+        # STEP 4
+        #
+
+        set {security.reset.step} to 4
+        set {security.reset.stepname} to "Securing Online Players"
+
+        broadcast "&8[&c4/12&8] &7Securing Online Players..."
+
+        execute console command "lp group temp permission set minecraft.command.help true"
+        execute console command "lp group temp permission set minecraft.command.msg true"
+
+        execute console command "lp group tempowner permission set * true"
+
+        loop all players:
+            execute console command "lp user %name of loop-player% parent add temp"
+
+        execute console command "lp user {@owner-name} parent add tempowner"
+
+        wait 40 ticks
+
+        #
+        # STEP 5
+        #
+
+        set {security.reset.step} to 5
+        set {security.reset.stepname} to "Cleaning User Data"
+
+        broadcast "&8[&c5/12&8] &7Cleaning User Data..."
+
+        loop all players:
+            execute console command "lp user %name of loop-player% clear"
+
+        wait 40 ticks
+
+        #
+        # STEP 6
+        #
+
+        set {security.reset.step} to 6
+        set {security.reset.stepname} to "Deleting Tracks"
+
+        broadcast "&8[&c6/12&8] &7Deleting Tracks..."
+
+        execute console command "lp deletetrack support"
+        execute console command "lp deletetrack development"
+        execute console command "lp deletetrack content"
+        execute console command "lp deletetrack builder"
+        execute console command "lp deletetrack creator"
+        execute console command "lp deletetrack player"
+
+        wait 40 ticks
+
+        #
+        # STEP 7
+        #
+
+        set {security.reset.step} to 7
+        set {security.reset.stepname} to "Deleting Groups"
+
+        broadcast "&8[&c7/12&8] &7Deleting Groups..."
+
+        execute console command "lp deletegroup owner"
+        execute console command "lp deletegroup admin"
+
+        execute console command "lp deletegroup srdev"
+        execute console command "lp deletegroup dev"
+        execute console command "lp deletegroup jrdev"
+
+        execute console command "lp deletegroup srcontent"
+        execute console command "lp deletegroup content"
+        execute console command "lp deletegroup jrcontent"
+
+        execute console command "lp deletegroup srmod"
+        execute console command "lp deletegroup mod"
+        execute console command "lp deletegroup jrmod"
+
+        execute console command "lp deletegroup srsup"
+        execute console command "lp deletegroup sup"
+        execute console command "lp deletegroup jrsup"
+
+        execute console command "lp deletegroup srbuilder"
+        execute console command "lp deletegroup builder"
+        execute console command "lp deletegroup jrbuilder"
+
+        execute console command "lp deletegroup creatorplus"
+        execute console command "lp deletegroup creator"
+
+        execute console command "lp deletegroup homie"
+        execute console command "lp deletegroup supreme"
+        execute console command "lp deletegroup vip"
+        execute console command "lp deletegroup premium"
+        execute console command "lp deletegroup spieler"
+
+        wait 60 ticks
+
+        #
+        # STEP 8
+        #
+
+        set {security.reset.step} to 8
+        set {security.reset.stepname} to "Rebuilding Permission Structure"
+
+        broadcast "&8[&c8/12&8] &7Rebuilding Permission Structure..."
+
+        set {security.permissions.start} to true
+
+        loop 300 times:
+
+            if {security.permissions.finished} is true:
+                stop loop
+
+            wait 20 ticks
+
+        if {security.permissions.finished} is not true:
+            broadcast "&cPermission rebuild timeout."
+
+            delete {security.permissions.start}
+            set {security.reset.running} to false
+            stop
+
+        delete {security.permissions.finished}
+
+        #
+        # STEP 9
+        #
+
+        set {security.reset.step} to 9
+        set {security.reset.stepname} to "Restoring Owner Access"
+
+        broadcast "&8[&c9/12&8] &7Restoring Owner Access..."
+
+        execute console command "op {@owner-name}"
+        execute console command "lp user {@owner-name} parent add owner"
+
+        wait 20 ticks
+
+        #
+        # STEP 10
+        #
+
+        set {security.reset.step} to 10
+        set {security.reset.stepname} to "Removing Recovery Groups"
+
+        broadcast "&8[&c10/12&8] &7Removing Recovery Groups..."
+
+        execute console command "lp deletegroup temp"
+        execute console command "lp deletegroup tempowner"
+
+        wait 20 ticks
+
+        #
+        # STEP 11
+        #
+
+        set {security.reset.step} to 11
+        set {security.reset.stepname} to "Final Verification"
+
+        broadcast "&8[&c11/12&8] &7Verifying Permission Structure..."
+
+        wait 20 ticks
+
+        #
+        # STEP 12
+        #
+
+        set {security.reset.step} to 12
+        set {security.reset.stepname} to "Finishing Recovery"
+
+        broadcast "&8[&c12/12&8] &7Finishing Recovery..."
+
+        delete {security.permissions.start}
+
+        delete {security.reset.step}
+        delete {security.reset.stepname}
+
+        set {security.reset.running} to false
+
+        broadcast ""
+        broadcast "&a&lSECURITY RECOVERY COMPLETE"
+        broadcast "&7Permission system rebuilt successfully."
+        broadcast ""
+
+#
+# JOIN LOCKDOWN
+#
+
+on join:
+
+    if {security.reset.running} is true:
+
+        teleport player to spawn location of world "world"
+
+        send ""
+        send "&4&lCLOURY SECURITY RECOVERY"
+        send "&7Permission system recovery is currently running."
+        send "&7Please wait until the recovery is complete."
+        send ""
+
+#
+# CHAT BLOCK
+#
+
+on chat:
+
+    if {security.reset.running} is true:
+
+        cancel event
+        send "{@prefix-security}&cChat is temporarily disabled."
+
+#
+# COMMAND BLOCK
+#
+
+on command:
+
+    if {security.reset.running} is true:
+
+        if player has permission "*":
+            stop
+        if sender is console:
+            stop
+
+        cancel event
+        send "{@prefix-security}&cCommands are temporarily disabled."

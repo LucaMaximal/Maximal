@@ -1,0 +1,35 @@
+options:
+    prefix-homie: &8[&4Homie-Permissions&8] &7
+
+#
+# HOMIE PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.homie.start}
+#
+# FINISH VARIABLE:
+# {security.rank.homie.finished}
+#
+
+every 1 second:
+
+    if {security.rank.homie.start} is not true:
+        stop
+
+    delete {security.rank.homie.start}
+
+    broadcast "{@prefix-homie}Applying Homie Permissions..."
+
+    #
+    # HOMIE PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group homie permission set ab.warns.own"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-homie}&aHomie Permissions Applied."
+
+    set {security.rank.homie.finished} to true

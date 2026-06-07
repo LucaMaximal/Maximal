@@ -1,0 +1,41 @@
+options:
+    prefix-sup: &8[&4Sup-Permissions&8] &7
+
+#
+# SUP PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.sup.start}
+#
+# FINISH VARIABLE:
+# {security.rank.sup.finished}
+#
+
+every 1 second:
+
+    if {security.rank.sup.start} is not true:
+        stop
+
+    delete {security.rank.sup.start}
+
+    broadcast "{@prefix-sup}Applying Sup Permissions..."
+
+    #
+    # SUP PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group sup permission set ab.ban.temp"
+
+    execute console command "lp group sup permission set ab.banlist"
+    
+    execute console command "lp group sup permission set ab.tempban.dur.7"
+    execute console command "lp group sup permission set ab.tempmute.dur.7"
+    execute console command "lp group sup permission set ab.tempwarn.dur.7"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-sup}&aSup Permissions Applied."
+
+    set {security.rank.sup.finished} to true

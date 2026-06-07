@@ -1,0 +1,35 @@
+options:
+    prefix-creator: &8[&4Creator-Permissions&8] &7
+
+#
+# CREATOR PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.creator.start}
+#
+# FINISH VARIABLE:
+# {security.rank.creator.finished}
+#
+
+every 1 second:
+
+    if {security.rank.creator.start} is not true:
+        stop
+
+    delete {security.rank.creator.start}
+
+    broadcast "{@prefix-creator}Applying Creator Permissions..."
+
+    #
+    # CREATOR PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group creator permission set ab.warns.own"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-creator}&aCreator Permissions Applied."
+
+    set {security.rank.creator.finished} to true

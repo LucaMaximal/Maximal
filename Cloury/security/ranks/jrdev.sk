@@ -1,0 +1,59 @@
+options:
+    prefix-jrdev: &8[&4JrDev-Permissions&8] &7
+
+#
+# JRDEV PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.jrdev.start}
+#
+# FINISH VARIABLE:
+# {security.rank.jrdev.finished}
+#
+
+every 1 second:
+
+    if {security.rank.jrdev.start} is not true:
+        stop
+
+    delete {security.rank.jrdev.start}
+
+    broadcast "{@prefix-jrdev}Applying JrDev Permissions..."
+
+    #
+    # JRDEV PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group jrdev permission set ab.check"
+    execute console command "lp group jrdev permission set ab.history"
+    
+    execute console command "lp group jrdev permission set ab.warns.other"
+    execute console command "lp group jrdev permission set ab.notes.other"
+    
+    execute console command "lp group jrdev permission set ab.notify.kick"
+    execute console command "lp group jrdev permission set ab.notify.ban"
+    execute console command "lp group jrdev permission set ab.notify.tempban"
+    execute console command "lp group jrdev permission set ab.notify.mute"
+    execute console command "lp group jrdev permission set ab.notify.tempmute"
+    execute console command "lp group jrdev permission set ab.notify.warn"
+    execute console command "lp group jrdev permission set ab.notify.tempwarn"
+    execute console command "lp group jrdev permission set ab.notify.note"
+    
+    execute console command "lp group jrdev permission set ab.undoNotify.ban"
+    execute console command "lp group jrdev permission set ab.undoNotify.mute"
+    execute console command "lp group jrdev permission set ab.undoNotify.warn"
+    execute console command "lp group jrdev permission set ab.undoNotify.note"
+    
+    execute console command "lp group jrdev permission set ab.kick.exempt.6"
+    execute console command "lp group jrdev permission set ab.ban.exempt.6"
+    execute console command "lp group jrdev permission set ab.mute.exempt.6"
+    execute console command "lp group jrdev permission set ab.warn.exempt.6"
+    execute console command "lp group jrdev permission set ab.note.exempt.6"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-jrdev}&aJrDev Permissions Applied."
+
+    set {security.rank.jrdev.finished} to true

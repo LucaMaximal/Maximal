@@ -1,0 +1,35 @@
+options:
+    prefix-supreme: &8[&4Supreme-Permissions&8] &7
+
+#
+# SUPREME PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.supreme.start}
+#
+# FINISH VARIABLE:
+# {security.rank.supreme.finished}
+#
+
+every 1 second:
+
+    if {security.rank.supreme.start} is not true:
+        stop
+
+    delete {security.rank.supreme.start}
+
+    broadcast "{@prefix-supreme}Applying Supreme Permissions..."
+
+    #
+    # SUPREME PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group supreme permission set ab.warns.own"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-supreme}&aSupreme Permissions Applied."
+
+    set {security.rank.supreme.finished} to true

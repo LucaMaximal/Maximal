@@ -1,0 +1,35 @@
+options:
+    prefix-dev: &8[&4Dev-Permissions&8] &7
+
+#
+# DEV PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.dev.start}
+#
+# FINISH VARIABLE:
+# {security.rank.dev.finished}
+#
+
+every 1 second:
+
+    if {security.rank.dev.start} is not true:
+        stop
+
+    delete {security.rank.dev.start}
+
+    broadcast "{@prefix-dev}Applying Dev Permissions..."
+
+    #
+    # DEV PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group dev permission set ab.note.use"
+
+    wait 20 ticks
+
+    broadcast "{@prefix-dev}&aDev Permissions Applied."
+
+    set {security.rank.dev.finished} to true

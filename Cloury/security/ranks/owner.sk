@@ -1,0 +1,96 @@
+options:
+    prefix-owner: &8[&4Owner-Permissions&8] &7
+
+#
+# OWNER PERMISSION SCRIPT
+#
+# START VARIABLE:
+# {security.rank.owner.start}
+#
+# FINISH VARIABLE:
+# {security.rank.owner.finished}
+#
+
+every 1 second:
+
+    if {security.rank.owner.start} is not true:
+        stop
+
+    delete {security.rank.owner.start}
+
+    broadcast "{@prefix-owner}Applying Owner Permissions..."
+
+    #
+    # OWNER PERMISSIONS
+    #
+    # ADD YOUR REAL PERMISSIONS HERE
+    #
+
+    execute console command "lp group owner permission set ab.kick.use"
+
+    execute console command "lp group owner permission set ab.ban.perma"
+    execute console command "lp group owner permission set ab.ban.temp"
+    execute console command "lp group owner permission set ab.ban.undo"
+
+    execute console command "lp group owner permission set ab.ipban.perma"
+    execute console command "lp group owner permission set ab.ipban.temp"
+
+    execute console command "lp group owner permission set ab.mute.perma"
+    execute console command "lp group owner permission set ab.mute.temp"
+    execute console command "lp group owner permission set ab.mute.undo"
+
+    execute console command "lp group owner permission set ab.warn.perma"
+    execute console command "lp group owner permission set ab.warn.temp"
+    execute console command "lp group owner permission set ab.warn.undo"
+
+    execute console command "lp group owner permission set ab.note.use"
+    execute console command "lp group owner permission set ab.note.undo"
+
+    execute console command "lp group owner permission set ab.all.undo"
+
+    execute console command "lp group owner permission set ab.warns.own"
+    execute console command "lp group owner permission set ab.warns.other"
+
+    execute console command "lp group owner permission set ab.notes.own"
+    execute console command "lp group owner permission set ab.notes.other"
+
+    execute console command "lp group owner permission set ab.check"
+    execute console command "lp group owner permission set ab.check.ip"
+
+    execute console command "lp group owner permission set ab.changeReason"
+
+    execute console command "lp group owner permission set ab.banlist"
+    execute console command "lp group owner permission set ab.history"
+
+    execute console command "lp group owner permission set ab.reload"
+    execute console command "lp group owner permission set ab.help"
+    execute console command "lp group owner permission set ab.systemprefs"
+
+    execute console command "lp group owner permission set ab.notify.kick"
+    execute console command "lp group owner permission set ab.notify.ban"
+    execute console command "lp group owner permission set ab.notify.tempban"
+    execute console command "lp group owner permission set ab.notify.ipban"
+    execute console command "lp group owner permission set ab.notify.tempipban"
+    execute console command "lp group owner permission set ab.notify.mute"
+    execute console command "lp group owner permission set ab.notify.tempmute"
+    execute console command "lp group owner permission set ab.notify.warn"
+    execute console command "lp group owner permission set ab.notify.tempwarn"
+    execute console command "lp group owner permission set ab.notify.note"
+
+    execute console command "lp group owner permission set ab.undoNotify.ban"
+    execute console command "lp group owner permission set ab.undoNotify.mute"
+    execute console command "lp group owner permission set ab.undoNotify.warn"
+    execute console command "lp group owner permission set ab.undoNotify.note"
+
+    execute console command "lp group owner permission set ab.kick.exempt.10"
+    execute console command "lp group owner permission set ab.ban.exempt.10"
+    execute console command "lp group owner permission set ab.mute.exempt.10"
+    execute console command "lp group owner permission set ab.warn.exempt.10"
+    execute console command "lp group owner permission set ab.note.exempt.10"
+
+
+    wait 20 ticks
+
+    broadcast "{@prefix-owner}&aOwner Permissions Applied."
+
+    set {security.rank.owner.finished} to true

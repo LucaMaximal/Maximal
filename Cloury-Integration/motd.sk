@@ -1,0 +1,9 @@
+options:
+    prefix: "<dark_gray>[<#00dafe><b>C</b><#0ac9fe><b>l</b><#14b7fd><b>o</b><#1ea6fd><b>u</b><#3d83fd><b>r</b><#7a3efd><b>y</b><dark_gray>]"
+    server-name: "<yellow>LifeSteal"
+    line1: "%{@server-name}% "
+    line2: <gray>Powered and sponsert by %{@prefix}%
+
+    
+on server list ping:
+    set the motd to "%{@server-name}% %nl%<gray>Powered and sponsert by %{@prefix}%"
